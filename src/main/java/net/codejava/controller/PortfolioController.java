@@ -28,6 +28,7 @@ public class PortfolioController {
 	@RequestMapping(value = "/")
 	public String getAllPortfolios(Model model) {
 		model.addAttribute("portfolios", portfolioService.getAllPortfolios());
+		System.out.println(portfolioService.getAllPortfolios());
 		return "Portfolio";
 	}
 	

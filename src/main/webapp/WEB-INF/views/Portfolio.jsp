@@ -14,13 +14,14 @@
     <body>
     <h1>Portfolio List</h1>  
 <table border="2" width="70%" cellpadding="2">  
-<tr><th>Ticker symbol</th><th>Average Buy Price</th><th>Shares</th></tr>  
+<tr><th>Ticker symbol</th><th>Average Buy Price</th><th>Shares</th><th>Cumulative</th></tr>  
    <c:forEach var="portfolio" items="${portfolios}">   
    <tr>  
    
    <td>${portfolio.name}</td>  
    <td>${portfolio.unitPrice}</td>  
-   <td>${portfolio.share}</td>  
+   <td>${portfolio.share}</td>
+   <td>${portfolio.cumulative}</td>  
     <td><a href="edit?id=${portfolio.portfolioId}">Edit</a></td>  
    <td><a href="delete/${portfolio.portfolioId}">Delete</a></td>  
    </tr>  

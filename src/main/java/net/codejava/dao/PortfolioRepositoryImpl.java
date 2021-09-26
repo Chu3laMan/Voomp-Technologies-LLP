@@ -26,6 +26,7 @@ public class PortfolioRepositoryImpl implements PortfolioRepository {
 			p.setName(rs.getString("TICKER_SYMBOL"));
 			p.setUnitPrice(rs.getDouble("PRICE"));
 			p.setShare(rs.getInt("SHARE"));
+			p.setCumulative(rs.getLong("CUMULATIVE"));
 			return p;
 		}
 		
@@ -55,7 +56,7 @@ public class PortfolioRepositoryImpl implements PortfolioRepository {
 	@Override
 	public List<Portfolio> getAllPortfolios() {
 		Map<String, Object> params = new HashMap<String, Object>();
-		List<Portfolio> result = namedParameterJdbcTemplate.query("SELECT * FROM PORTFOLIO", params, new PortfolioMapper());
+		List<Portfolio> result = namedParameterJdbcTemplate.query("SELECT TICKER_SYMBOL, PRICE, SHARE, ROUND(((PRICE - 100) * SHARE), 2) AS CUMULATIVE FROM PORTFOLIO", params, new PortfolioMapper());
 		return result;
 	}
 
@@ -79,5 +80,7 @@ public class PortfolioRepositoryImpl implements PortfolioRepository {
 		String query = "SELECT * FROM PORTFOLIO WHERE portfolioID = ?";
 		return jdbcTemplate.queryForObject(query, new PortfolioMapper(), portfolioId);
 	}
+
+	
 
 }

@@ -12,6 +12,7 @@ public class Portfolio implements Serializable {
 	private String name;
 	private double unitPrice;
 	private int share;
+	private double cumulative;
 	
 	public Portfolio() {}
 
@@ -20,11 +21,26 @@ public class Portfolio implements Serializable {
 	 * @param unitPrice
 	 * @param share
 	 */
-	public Portfolio(String name, double unitPrice, int share) {
+	public Portfolio(String name, double unitPrice, int share, double cumulative) {
 		super();
 		this.name = name;
 		this.unitPrice = unitPrice;
 		this.share = share;
+		this.cumulative = cumulative;
+	}
+
+	/**
+	 * @return the cumulative
+	 */
+	public double getCumulative() {
+		return cumulative;
+	}
+
+	/**
+	 * @param cumulative the cumulative to set
+	 */
+	public void setCumulative(double cumulative) {
+		this.cumulative = cumulative;
 	}
 
 	/**
