@@ -42,7 +42,7 @@ public class PortfolioController {
 	//below methods are used to add new product to the store, moreover, it used form backing bean in order to get information
 	//from the HTML form elements in order to process them in the Controller
 	@RequestMapping(value = "/addPortfolio", method = RequestMethod.GET)
-	public String getAddNewProductForm(Model model) {
+	public String getAddNewPortfolioForm(Model model) {
 		Portfolio newPortfolio = new Portfolio();
 		model.addAttribute("newPortfolio", newPortfolio);
 		return "addPortfolio";
