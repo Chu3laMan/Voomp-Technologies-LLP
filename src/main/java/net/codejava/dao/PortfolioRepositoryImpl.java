@@ -78,7 +78,21 @@ public class PortfolioRepositoryImpl implements PortfolioRepository {
 	@Override
 	public Portfolio getPortfolioById(long portfolioId) {
 		String query = "SELECT * FROM PORTFOLIO WHERE portfolioID = ?";
-		return jdbcTemplate.queryForObject(query, new PortfolioMapper(), portfolioId);
+		return jdbcTemplate.queryForObject(query, new PortfolioMapper2(), portfolioId);
+	}
+	
+	public static final class PortfolioMapper2 implements RowMapper<Portfolio> {
+
+		@Override
+		public Portfolio mapRow(ResultSet rs, int rowNum) throws SQLException {
+			// TODO Auto-generated method stub
+			Portfolio p = new Portfolio();
+			p.setName(rs.getString("TICKER_SYMBOL"));
+			p.setUnitPrice(rs.getDouble("PRICE"));
+			p.setShare(rs.getInt("SHARE"));
+			return p;
+		}
+		
 	}
 
 	
